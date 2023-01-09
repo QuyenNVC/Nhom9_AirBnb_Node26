@@ -1,5 +1,5 @@
 const { TokenExpiredError, JsonWebTokenError } = require("jsonwebtoken");
-const { User } = require("../databases/mongoDB");
+const User = require("../databases/mysql/user");
 const { TOKEN_TYPE } = require("../helpers/constants");
 const { checkToken } = require("../helpers/jwt");
 const { AppError } = require("./error");
@@ -23,7 +23,7 @@ const authenticated = async (req, res, next) => {
     const token = extractTokenFromHeader(req.headers);
     const payload = await checkToken(token, TOKEN_TYPE.access);
 
-    const user = await User.findById(payload.id);
+    const user = await user.findById(payload.id);
     if (!user) {
       throw new AppError(401, "Invalid Token");
     }
