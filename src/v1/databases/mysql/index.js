@@ -1,5 +1,5 @@
 const sequelize = require("./connectDB");
-const User = require("./user");
+const User = require("./User");
 
 sequelize.sync({
   alter: true,
