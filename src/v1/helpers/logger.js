@@ -1,0 +1,26 @@
+const { createStream } = require("rotating-file-stream");
+const { createLogger, format, transports } = require("winston");
+
+module.exports = {
+  logger: createLogger({
+    format: format.combine(
+      format.timestamp({ format: "YYYY-MM-DD HH:mm:ss" }),
+      format.align(),
+      format.printf((i) => `${i.level}: ${[i.timestamp]}: ${i.message}`)
+    ),
+    transports: [
+      new transports.File({
+        filename: "logs/debug.log",
+        level: "info",
+      }),
+      new transports.File({
+        filename: "logs/error.log",
+        level: "error",
+      }),
+    ],
+  }),
+  accessLogStream: createStream("access.log", {
+    interval: "1d",
+    path: "logs",
+  }),
+};
