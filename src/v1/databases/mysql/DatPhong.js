@@ -21,7 +21,7 @@ module.exports = sequelize.define(
     },
     ngayDi: {
       type: DATE,
-      field: "ngayDi",
+      field: "ngay_di",
     },
     soLuongKhach: {
       field: "so_luong_khach",

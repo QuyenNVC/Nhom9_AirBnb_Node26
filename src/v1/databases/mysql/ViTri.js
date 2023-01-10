@@ -29,6 +29,9 @@ module.exports = sequelize.define(
       field: "hinh_anh",
       type: STRING,
     },
+    filename: {
+      type: STRING,
+    },
   },
   {
     tableName: "ViTri",

@@ -74,6 +74,9 @@ module.exports = sequelize.define(
       type: STRING,
       field: "hinh_anh",
     },
+    filename: {
+      type: STRING,
+    },
     idViTri: {
       field: "id_vi_tri",
       type: INTEGER,
