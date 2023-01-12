@@ -28,8 +28,8 @@
 const cloudinary = require("cloudinary").v2;
 const { CloudinaryStorage } = require("multer-storage-cloudinary");
 const multer = require("multer");
-const result = require("dotenv").config({ path: "../../../.env" });
-console.log(result.error);
+// const result = require("dotenv").config({ path: "../../../.env" });
+// console.log(result.error);
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_NAME,
   api_key: process.env.CLOUDINARY_KEY,
