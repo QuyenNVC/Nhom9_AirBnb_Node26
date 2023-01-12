@@ -1,3 +1,4 @@
+const { Op } = require("sequelize");
 const ViTri = require("../databases/mysql/ViTri");
 const { isViTriExist } = require("../helpers/validators");
 const { AppError } = require("../middlewares/error");
@@ -11,11 +12,29 @@ module.exports = {
       throw error;
     }
   },
-  getViTrisPaginate: async (paginattion) => {
+  getViTrisPaginate: async ({ page, pageSize, keyword }) => {
     try {
-      const { page, pageSize } = paginattion;
-      const total = await ViTri.count();
+      keyword = keyword ? `%${keyword}%` : "";
+      const condition = keyword
+        ? {
+            [Op.or]: {
+              tenViTri: {
+                [Op.like]: keyword,
+              },
+              tinhThanh: {
+                [Op.like]: keyword,
+              },
+              quocGia: {
+                [Op.like]: keyword,
+              },
+            },
+          }
+        : {};
+      const total = await ViTri.count({
+        where: condition,
+      });
       const data = await ViTri.findAll({
+        where: condition,
         limit: isNaN(pageSize) ? 10 : parseInt(pageSize),
         offset:
           isNaN(pageSize) || isNaN(page) ? 0 : parseInt((page - 1) * pageSize),
@@ -97,7 +116,7 @@ module.exports = {
       }
 
       await viTri.update({
-        hinhAnh: file.hinhAnh,
+        hinhAnh: file.path,
         filename: file.filename,
       });
 
