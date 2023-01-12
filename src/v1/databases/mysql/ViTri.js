@@ -1,4 +1,4 @@
-const { INTEGER, STRING } = require("sequelize");
+const { INTEGER, STRING, DATE } = require("sequelize");
 const sequelize = require("./connectDB");
 
 module.exports = sequelize.define(
@@ -13,7 +13,6 @@ module.exports = sequelize.define(
       field: "ten_vi_tri",
       type: STRING,
       allowNull: false,
-      unique: "name",
     },
     tinhThanh: {
       field: "tinh_thanh",
@@ -32,9 +31,21 @@ module.exports = sequelize.define(
     filename: {
       type: STRING,
     },
+    deletedAt: {
+      type: DATE,
+      defaultValue: null,
+    },
   },
   {
     tableName: "ViTri",
-    timestamps: false,
+    timestamps: true,
+    createdAt: false,
+    updatedAt: false,
+    paranoid: "deletedAt",
+    defaultScope: {
+      attributes: {
+        exclude: ["deletedAt"],
+      },
+    },
   }
 );

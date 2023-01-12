@@ -1,5 +1,14 @@
 const { genSaltSync, hashSync } = require("bcrypt");
-const { STRING, BOOLEAN, ENUM, INTEGER, DATE, literal } = require("sequelize");
+const {
+  STRING,
+  BOOLEAN,
+  ENUM,
+  INTEGER,
+  DATE,
+  literal,
+  NOW,
+} = require("sequelize");
+const { ROLE } = require("../../helpers/constants");
 const sequelize = require("./connectDB");
 
 module.exports = sequelize.define(
@@ -34,20 +43,25 @@ module.exports = sequelize.define(
     },
     phone: {
       type: STRING,
-      allowNull: false,
+      // allowNull: false,
     },
     birthDay: {
       type: DATE,
-      allowNull: false,
+      // allowNull: false,
       field: "birth_day",
     },
     gender: {
       type: BOOLEAN,
-      allowNull: false,
+      // allowNull: false,
     },
     role: {
-      type: ENUM("ADMIN", "USER"),
+      type: ENUM(ROLE.ADMIN, ROLE.USER),
       allowNull: false,
+    },
+    createdAt: {
+      type: DATE,
+      field: "created_at",
+      defaultValue: literal("CURRENT_TIMESTAMP"),
     },
     verifiedAt: {
       type: DATE,
@@ -56,7 +70,8 @@ module.exports = sequelize.define(
   },
   {
     tableName: "users",
-    timestamps: false,
+    timestamps: true,
+    updatedAt: false,
     defaultScope: {
       attributes: {
         exclude: ["password"],

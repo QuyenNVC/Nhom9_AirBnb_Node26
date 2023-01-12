@@ -14,62 +14,62 @@ module.exports = sequelize.define(
       field: "ten_phong",
       allowNull: false,
     },
-    khach: {
-      type: INTEGER,
-      defaultValue: 0,
-    },
-    phongNgu: {
-      type: INTEGER,
-      field: "phong_ngu",
-      defaultValue: 0,
-    },
-    giuong: {
-      type: INTEGER,
-      defaultValue: 0,
-    },
-    phongTam: {
-      type: INTEGER,
-      field: "phong_tam",
-      defaultValue: 0,
-    },
-    moTa: {
-      type: STRING,
-      field: "mo_ta",
-    },
-    giaTien: {
-      type: INTEGER,
-      field: "gia_tien",
-      allowNull: false,
-    },
-    mayGiat: {
-      type: BOOLEAN,
-      field: "may_giat",
-    },
-    banLa: {
-      type: BOOLEAN,
-      field: "ban_la",
-    },
-    tivi: {
-      type: BOOLEAN,
-    },
-    dieuHoa: {
-      type: BOOLEAN,
-      field: "dieuHoa",
-    },
-    wifi: {
-      type: BOOLEAN,
-    },
-    bep: {
-      type: BOOLEAN,
-    },
-    doXe: {
-      type: BOOLEAN,
-      field: "do_xe",
-    },
-    hoBoi: {
-      type: BOOLEAN,
-      field: "ho_boi",
-    },
+    // khach: {
+    //   type: INTEGER,
+    //   defaultValue: 0,
+    // },
+    // phongNgu: {
+    //   type: INTEGER,
+    //   field: "phong_ngu",
+    //   defaultValue: 0,
+    // },
+    // giuong: {
+    //   type: INTEGER,
+    //   defaultValue: 0,
+    // },
+    // phongTam: {
+    //   type: INTEGER,
+    //   field: "phong_tam",
+    //   defaultValue: 0,
+    // },
+    // moTa: {
+    //   type: STRING,
+    //   field: "mo_ta",
+    // },
+    // giaTien: {
+    //   type: INTEGER,
+    //   field: "gia_tien",
+    //   allowNull: false,
+    // },
+    // mayGiat: {
+    //   type: BOOLEAN,
+    //   field: "may_giat",
+    // },
+    // banLa: {
+    //   type: BOOLEAN,
+    //   field: "ban_la",
+    // },
+    // tivi: {
+    //   type: BOOLEAN,
+    // },
+    // dieuHoa: {
+    //   type: BOOLEAN,
+    //   field: "dieuHoa",
+    // },
+    // wifi: {
+    //   type: BOOLEAN,
+    // },
+    // bep: {
+    //   type: BOOLEAN,
+    // },
+    // doXe: {
+    //   type: BOOLEAN,
+    //   field: "do_xe",
+    // },
+    // hoBoi: {
+    //   type: BOOLEAN,
+    //   field: "ho_boi",
+    // },
     hinhAnh: {
       type: STRING,
       field: "hinh_anh",
@@ -77,7 +77,7 @@ module.exports = sequelize.define(
     filename: {
       type: STRING,
     },
-    idViTri: {
+    maViTri: {
       field: "id_vi_tri",
       type: INTEGER,
       allowNull: false,
@@ -90,6 +90,14 @@ module.exports = sequelize.define(
   },
   {
     tableName: "Phong",
-    timestamps: false,
+    timestamps: true,
+    createdAt: false,
+    updatedAt: false,
+    paranoid: "deletedAt",
+    defaultScope: {
+      attributes: {
+        exclude: ["deletedAt"],
+      },
+    },
   }
 );

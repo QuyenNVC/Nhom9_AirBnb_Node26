@@ -13,4 +13,8 @@ module.exports = {
       time: process.env.REFRESH_TOKEN_TIME,
     },
   },
+  ROLE: {
+    USER: "USER",
+    ADMIN: "ADMIN",
+  },
 };

@@ -4,6 +4,7 @@ const Phong = require("./Phong");
 const User = require("./User");
 const ViTri = require("./ViTri");
 const BinhLuan = require("./BinhLuan");
+const LichSuCapNhatPhong = require("./LichSuCapNhatPhong");
 
 User.hasMany(Phong, {
   as: "phongs",
@@ -16,11 +17,11 @@ Phong.belongsTo(User, {
 
 ViTri.hasMany(Phong, {
   as: "phongs",
-  foreignKey: "idViTri",
+  foreignKey: "maViTri",
 });
 Phong.belongsTo(ViTri, {
   as: "viTri",
-  foreignKey: "idViTri",
+  foreignKey: "maViTri",
 });
 
 // User.belongsToMany(Phong, {
@@ -68,6 +69,16 @@ Phong.hasMany(BinhLuan, {
 BinhLuan.belongsTo(Phong, {
   as: "phong",
   foreignKey: "maPhong",
+});
+
+// Làm table lịch sử cập nhật phòng để giải quyết việc thông tin đặt phòng bị thay đổi khi thông tin phòng thay đổi
+Phong.hasMany(LichSuCapNhatPhong, {
+  as: "details",
+  foreignKey: "phongId",
+});
+LichSuCapNhatPhong.belongsTo(Phong, {
+  as: "phong",
+  foreignKey: "phongId",
 });
 
 sequelize.sync({

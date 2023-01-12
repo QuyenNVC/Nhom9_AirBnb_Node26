@@ -12,6 +12,11 @@ module.exports = {
       new transports.File({
         filename: "logs/debug.log",
         level: "info",
+        format: format.combine(
+          format.printf((i) =>
+            i.level === "info" ? `${i.level}: ${i.timestamp}: ${i.message}` : ""
+          )
+        ),
       }),
       new transports.File({
         filename: "logs/error.log",
