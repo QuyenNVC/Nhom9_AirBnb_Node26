@@ -1,3 +1,6 @@
+const ViTri = require("../databases/mysql/ViTri");
+const { AppError } = require("../middlewares/error");
+
 module.exports = {
   isJson: (str) => {
     try {
@@ -6,5 +9,17 @@ module.exports = {
       return false;
     }
     return true;
+  },
+  isEmail: (email) => {
+    return email.match(
+      /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    );
+  },
+  isViTriExist: async (id) => {
+    const viTri = await ViTri.findByPk(id);
+    if (!viTri) {
+      throw new AppError(404, "Vị trí not found!");
+    }
+    return viTri;
   },
 };

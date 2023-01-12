@@ -1,27 +1,23 @@
-const { verify } = require("jsonwebtoken");
+const { verify, sign } = require("jsonwebtoken");
 const { AppError } = require("../middlewares/error");
 const { redisGet } = require("../services/redis");
 const { TOKEN_TYPE, TOKEN } = require("./constants");
 
-const generateToken = (payload, type) => {
-  if (!(type == TOKEN_TYPE.refresh || type == TOKEN_TYPE.access)) {
-    throw new AppError(500, "Something went wrong!");
-  }
-
+const generateToken = (payload) => {
   const token = sign(
     {
       id: payload.id,
       email: payload.email,
     },
-    TOKEN[type].key,
+    process.env.ACCESS_TOKEN_KEY,
     {
-      expiresIn: TOKEN[type].expiresIn,
+      expiresIn: parseInt(process.env.ACCESS_TOKEN_TIME),
     }
   );
 
   return {
     token,
-    expiresIn: TOKEN_CFG[type].expiresIn,
+    expiresIn: parseInt(process.env.ACCESS_TOKEN_TIME),
   };
 };
 
@@ -31,7 +27,7 @@ checkToken = async (token, type) => {
     //   throw new AppError(401, "Invalid token!");
     // }
 
-    const payload = verify(token, TOKEN[type].key);
+    const payload = verify(token, process.env.ACCESS_TOKEN_KEY);
     return payload;
   } catch (error) {
     throw error;
