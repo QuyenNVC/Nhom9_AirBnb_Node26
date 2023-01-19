@@ -102,6 +102,21 @@ const updateUser = () => {
   };
 };
 
+const uploadAvatar = () => {
+  return async (req, res, next) => {
+    try {
+      const { id } = res.locals.user;
+      const fileData = req.file;
+
+      const updateUser = await userService.uploadAvatar(id, fileData);
+      response(res, updateUser);
+    } catch (error) {
+      console.log(error);
+      next(error);
+    }
+  };
+};
+
 module.exports = {
   getAllUser,
   deleteUser,
@@ -110,4 +125,5 @@ module.exports = {
   getUserById,
   getUserByName,
   updateUser,
+  uploadAvatar,
 };

@@ -1,8 +1,8 @@
-const { Op } = require("sequelize");
+const { Op, DatabaseError } = require("sequelize");
 const User = require("../databases/mysql/User");
 const { ROLE } = require("../helpers/constants");
 const { AppError } = require("../middlewares/error");
-
+const cloudinary = require("cloudinary").v2;
 const getAllUser = async () => {
   try {
     const users = await User.findAll({ raw: true });
@@ -113,7 +113,31 @@ const updateUser = async (id, data) => {
     const updateUser = await User.update(data, { where: { id } });
     return `userId-${user.id} update success`;
   } catch (error) {
-    console.log(error);
+    throw error;
+  }
+};
+
+const uploadAvatar = async (userID, fileData) => {
+  try {
+    console.log({ userID, fileData });
+    const user = await User.findOne({ where: { id: userID } });
+    if (!user && fileData) {
+      cloudinary.uploader.destroy(fileData.filename);
+      throw new AppError(400, "User is not existed");
+    }
+    if (fileData) {
+      cloudinary.uploader.destroy(user.fileName);
+    }
+    const updateUser = await User.update(
+      { avatar: fileData.path, fileName: fileData.filename },
+      { where: { id: userID } }
+    );
+    return updateUser;
+  } catch (error) {
+    console.log("error", error);
+    if (fileData) {
+      cloudinary.uploader.destroy(fileData.filename);
+    }
     throw error;
   }
 };
@@ -126,4 +150,5 @@ module.exports = {
   getUserById,
   getUserByName,
   updateUser,
+  uploadAvatar,
 };

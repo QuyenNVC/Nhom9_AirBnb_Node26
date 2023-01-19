@@ -58,6 +58,13 @@ module.exports = sequelize.define(
       type: ENUM(ROLE.ADMIN, ROLE.USER),
       allowNull: false,
     },
+    avatar: {
+      type: STRING,
+    },
+    fileName: {
+      type: STRING,
+      field: "file_name",
+    },
     createdAt: {
       type: DATE,
       field: "created_at",
