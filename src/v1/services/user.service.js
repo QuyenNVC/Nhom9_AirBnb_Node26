@@ -134,7 +134,6 @@ const uploadAvatar = async (userID, fileData) => {
     );
     return updateUser;
   } catch (error) {
-    console.log("error", error);
     if (fileData) {
       cloudinary.uploader.destroy(fileData.filename);
     }
