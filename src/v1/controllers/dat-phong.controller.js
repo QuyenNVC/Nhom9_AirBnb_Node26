@@ -17,7 +17,10 @@ const getDatPhongById = () => {
   return async (req, res, next) => {
     try {
       const { id } = req.params;
-      const datPhong = await datPhongService.getDatPhongById(id);
+      const datPhong = await datPhongService.getDatPhongById(
+        id,
+        res.locals.user
+      );
       response(res, datPhong);
     } catch (error) {
       next(error);
@@ -29,7 +32,10 @@ const getDatPhongByNguoiDung = () => {
   return async (req, res, next) => {
     try {
       const { userId } = req.params;
-      const datPhong = await datPhongService.getDatPhongByNguoiDung(userId);
+      const datPhong = await datPhongService.getDatPhongByNguoiDung(
+        userId,
+        res.locals.user
+      );
       response(res, datPhong);
     } catch (error) {
       next(error);
