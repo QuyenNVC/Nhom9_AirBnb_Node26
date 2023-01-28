@@ -4,6 +4,8 @@ const User = require("../databases/mysql/User");
 const { getThongTinPhong } = require("../helpers/phongFunctions");
 const { AppError } = require("../middlewares/error");
 const moment = require("moment");
+const { ROLE } = require("../helpers/constants");
+const { Op } = require("sequelize");
 const getAllDatPhong = async () => {
   try {
     const result = await DatPhong.findAll({
@@ -25,15 +27,18 @@ const getAllDatPhong = async () => {
   }
 };
 
-const getDatPhongById = async (id) => {
+const getDatPhongById = async (id, requester) => {
   try {
     const result = await DatPhong.findAll({
       raw: true,
-      where: { id },
+      where:
+        requester.role == ROLE.ADMIN
+          ? { id }
+          : { id, maNguoiDat: requester.id },
     });
 
     if (result.length === 0) {
-      throw new AppError(400, "DatPhong Id is not existed");
+      throw new AppError(400, "DatPhong is not existed");
     }
 
     const detailPhong = await Promise.all(
@@ -51,8 +56,12 @@ const getDatPhongById = async (id) => {
   }
 };
 
-const getDatPhongByNguoiDung = async (userId) => {
+const getDatPhongByNguoiDung = async (userId, requester) => {
   try {
+    if (userId != requester.id && requester.role != ROLE.ADMIN) {
+      throw new AppError(403, "Unauthorized!");
+    }
+
     const result = await DatPhong.findAll({
       raw: true,
       where: { maNguoiDat: userId },
