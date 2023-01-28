@@ -102,6 +102,42 @@ const createDatPhong = async (data, userId) => {
       throw new AppError(400, "User id is not existed");
     }
 
+    const datPhong = await DatPhong.findOne({
+      where: {
+        maPhong: data.maPhong,
+        [Op.or]: [
+          {
+            [Op.or]: [
+              {
+                ngayDen: {
+                  [Op.gte]: new Date(data.ngayDen),
+                  [Op.lt]: new Date(data.ngayDi),
+                },
+              },
+              {
+                ngayDi: {
+                  [Op.gt]: new Date(data.ngayDen),
+                  [Op.lte]: new Date(data.ngayDi),
+                },
+              },
+            ],
+          },
+          {
+            ngayDen: {
+              [Op.lte]: new Date(data.ngayDen),
+            },
+            ngayDi: {
+              [Op.gte]: new Date(data.ngayDi),
+            },
+          },
+        ],
+      },
+    });
+
+    if (datPhong) {
+      throw new AppError(400, "Phong already ordered!");
+    }
+
     const createDatPhong = await DatPhong.create({
       ...data,
       maNguoiDat: userId,
@@ -139,6 +175,44 @@ const updateDatPhong = async (data, userId, maDatPhong) => {
     }
     const datPhong = await DatPhong.findOne({ where: { id: maDatPhong } });
 
+    const datPhong2 = await DatPhong.findOne({
+      where: {
+        maPhong: {
+          [Op.ne]: data.maPhong,
+        },
+        [Op.or]: [
+          {
+            [Op.or]: [
+              {
+                ngayDen: {
+                  [Op.gte]: new Date(data.ngayDen),
+                  [Op.lt]: new Date(data.ngayDi),
+                },
+              },
+              {
+                ngayDi: {
+                  [Op.gt]: new Date(data.ngayDen),
+                  [Op.lte]: new Date(data.ngayDi),
+                },
+              },
+            ],
+          },
+          {
+            ngayDen: {
+              [Op.lte]: new Date(data.ngayDen),
+            },
+            ngayDi: {
+              [Op.gte]: new Date(data.ngayDi),
+            },
+          },
+        ],
+      },
+    });
+
+    if (datPhong2) {
+      throw new AppError(400, "Phong already ordered!");
+    }
+
     const startData = moment(datPhong.dataValues.ngayDen, "DD/MM/YYYT");
     const endData = moment(datPhong.dataValues.ngayDi, "DD/MM/YYYY");
 
@@ -159,6 +233,7 @@ const updateDatPhong = async (data, userId, maDatPhong) => {
         throw new AppError(400, "NgayDi phải lớn hơn ngayDen ở Data");
       }
     }
+
     const updateDatPhong = await DatPhong.update(
       {
         ...data,
