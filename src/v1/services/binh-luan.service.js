@@ -83,10 +83,7 @@ const updateBinhLuan = async (userId, idComment, data) => {
     const updateComment = await comment.update(
       {
         ...data,
-        ngayBinhLuan: moment(Date.now())
-          .tz("Asia/Ho_Chi_Minh")
-          .locale("vi", vi)
-          .format("Z"),
+        ngayBinhLuan: Date.now(),
       },
       { where: { id: +idComment } }
     );

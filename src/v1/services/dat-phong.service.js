@@ -5,7 +5,7 @@ const { getThongTinPhong } = require("../helpers/phongFunctions");
 const { AppError } = require("../middlewares/error");
 const moment = require("moment");
 const { ROLE } = require("../helpers/constants");
-const { Op } = require("sequelize");
+const { Op, Sequelize } = require("sequelize");
 const getAllDatPhong = async () => {
   try {
     const result = await DatPhong.findAll({
@@ -150,7 +150,6 @@ const createDatPhong = async (data, userId) => {
 
 const updateDatPhong = async (data, userId, maDatPhong) => {
   try {
-    console.log(data);
     if (data.maPhong) {
       const phong = await Phong.findByPk(data.maPhong);
       if (!phong) {
@@ -177,9 +176,10 @@ const updateDatPhong = async (data, userId, maDatPhong) => {
 
     const datPhong2 = await DatPhong.findOne({
       where: {
-        maPhong: {
-          [Op.ne]: data.maPhong,
-        },
+        // maPhong: {
+        //   [Op.ne]: data.maPhong,
+        // },
+        maPhong: data.maPhong,
         [Op.or]: [
           {
             [Op.or]: [
@@ -211,27 +211,6 @@ const updateDatPhong = async (data, userId, maDatPhong) => {
 
     if (datPhong2) {
       throw new AppError(400, "Phong already ordered!");
-    }
-
-    const startData = moment(datPhong.dataValues.ngayDen, "DD/MM/YYYT");
-    const endData = moment(datPhong.dataValues.ngayDi, "DD/MM/YYYY");
-
-    if (data.ngayDen) {
-      const start = moment(data.ngayDen, "DD/MM/YYYY");
-
-      const isCheckNgayDen = start.isBefore(endData);
-      if (!isCheckNgayDen) {
-        throw new AppError(400, "NgayDen phải nhỏ hơn ngayDi ở Data");
-      }
-    }
-
-    if (data.ngayDi) {
-      const end = moment(data.ngayDi, "DD/MM/YYYY");
-
-      const isCheckNgayDi = end.isAfter(startData);
-      if (!isCheckNgayDi) {
-        throw new AppError(400, "NgayDi phải lớn hơn ngayDen ở Data");
-      }
     }
 
     const updateDatPhong = await DatPhong.update(
