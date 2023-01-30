@@ -75,8 +75,8 @@ const updateKhach = () => {
       const { ngayDen, ngayDi, maNguoiDat } = req.body;
       const { maDatPhong } = req.params;
       if (ngayDen && ngayDi) {
-        const start = moment(ngayDen, "DD/MM/YYYY");
-        const end = moment(ngayDi, "DD/MM/YYYY");
+        const start = moment(ngayDen, "YYYY-MM-DD");
+        const end = moment(ngayDi, "YYYY-MM-DD");
 
         const isCheckNgayDen = start.isBefore(end);
         if (!isCheckNgayDen) {
