@@ -1,0 +1,1254 @@
+{
+	"info": {
+		"_postman_id": "9824dc29-167f-41a6-8e6d-91301dcc9998",
+		"name": "Nhom9_Node26_Airbnb",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21433026"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Sign up",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"quyền\",\r\n    \"email\": \"nvcquyen@gmail.com\",\r\n    \"password\": \"123456aA@\",\r\n    \"phone\": \"0909090909\",\r\n    \"birthDay\": \"2000-01-01\",\r\n    \"gender\": true,\r\n    \"role\": \"ADMIN\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/register",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify account",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/auth/verify?code=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZW1haWwiOiJudmNxdXllbkBnbWFpbC5jb20iLCJpYXQiOjE2NzM0MDQ3MTUsImV4cCI6MTY3MzQxMTkxNX0._ZHn-oWHhD_0RV-ez3-openbzO4J2U5K4UFB3oDkA_8",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"verify"
+							],
+							"query": [
+								{
+									"key": "code",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZW1haWwiOiJudmNxdXllbkBnbWFpbC5jb20iLCJpYXQiOjE2NzM0MDQ3MTUsImV4cCI6MTY3MzQxMTkxNX0._ZHn-oWHhD_0RV-ez3-openbzO4J2U5K4UFB3oDkA_8"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sign in",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"nvcquyen@gmail.com\",\r\n    \"password\": \"123456aA@\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login google",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/auth/login-google",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"login-google"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login facebook",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/auth/login-facebook",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"login-facebook"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Vi trí",
+			"item": [
+				{
+					"name": "List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/vi-tri",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"vi-tri"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pagination",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/vi-tri/phan-trang-tim-kiem?page=1&pageSize=10&keyword=test1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"vi-tri",
+								"phan-trang-tim-kiem"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "pageSize",
+									"value": "10"
+								},
+								{
+									"key": "keyword",
+									"value": "test1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/vi-tri/3",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"vi-tri",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiZW1haWwiOiJudmNxdXllbkBnbWFpbC5jb20iLCJpYXQiOjE2NzY3MjYzMTYsImV4cCI6MTY3NjczMzUxNn0.qBrihFVhwhpVtM84QOTbQH_T3oiQV7sQ49a2EmsJPEc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "tenViTri",
+									"value": "Chung cư Hà Đô 3",
+									"type": "text"
+								},
+								{
+									"key": "tinhThanh",
+									"value": "HCM",
+									"type": "text"
+								},
+								{
+									"key": "quocGia",
+									"value": "Việt Nam",
+									"type": "text"
+								},
+								{
+									"key": "hinhAnh",
+									"type": "file",
+									"src": "/C:/Users/DELL/Downloads/Front-end_CyberSoft.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/vi-tri",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"vi-tri"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiZW1haWwiOiJudmNxdXllbkBnbWFpbC5jb20iLCJpYXQiOjE2NzY3MjYzMTYsImV4cCI6MTY3NjczMzUxNn0.qBrihFVhwhpVtM84QOTbQH_T3oiQV7sQ49a2EmsJPEc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"tenViTri\": \"test update tên vị trí\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/vi-tri/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"vi-tri",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiZW1haWwiOiJudmNxdXllbkBnbWFpbC5jb20iLCJpYXQiOjE2NzY3MjYzMTYsImV4cCI6MTY3NjczMzUxNn0.qBrihFVhwhpVtM84QOTbQH_T3oiQV7sQ49a2EmsJPEc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/vi-tri/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"vi-tri",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Upload image",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiZW1haWwiOiJudmNxdXllbkBnbWFpbC5jb20iLCJpYXQiOjE2NzY3MjYzMTYsImV4cCI6MTY3NjczMzUxNn0.qBrihFVhwhpVtM84QOTbQH_T3oiQV7sQ49a2EmsJPEc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "formFile",
+									"type": "file",
+									"src": "/C:/Users/DELL/Downloads/Polygon 1.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/vi-tri/upload-hinh-vitri?maViTri=2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"vi-tri",
+								"upload-hinh-vitri"
+							],
+							"query": [
+								{
+									"key": "maViTri",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Phong",
+			"item": [
+				{
+					"name": "List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/phong-thue",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"phong-thue"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pagination",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/phong-thue/phan-trang-tim-kiem?keyword=2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"phong-thue",
+								"phan-trang-tim-kiem"
+							],
+							"query": [
+								{
+									"key": "keyword",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/phong-thue/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"phong-thue",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiZW1haWwiOiJudmNxdXllbkBnbWFpbC5jb20iLCJpYXQiOjE2NzY3MjYzMTYsImV4cCI6MTY3NjczMzUxNn0.qBrihFVhwhpVtM84QOTbQH_T3oiQV7sQ49a2EmsJPEc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "tenPhong",
+									"value": "phòng 2",
+									"type": "text"
+								},
+								{
+									"key": "khach",
+									"value": "4",
+									"type": "text"
+								},
+								{
+									"key": "maViTri",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "hinhAnh",
+									"type": "file",
+									"src": "/C:/Users/DELL/Downloads/6360461.jpg",
+									"disabled": true
+								},
+								{
+									"key": "phongNgu",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "giuong",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "phongTam",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "moTa",
+									"value": "mo tả test",
+									"type": "text"
+								},
+								{
+									"key": "giaTien",
+									"value": "2000000",
+									"type": "text"
+								},
+								{
+									"key": "banLa",
+									"value": "true",
+									"type": "text"
+								},
+								{
+									"key": "tivi",
+									"value": "true",
+									"type": "text"
+								},
+								{
+									"key": "doXe",
+									"value": "false",
+									"type": "text"
+								},
+								{
+									"key": "hoBoi",
+									"value": "true",
+									"type": "text"
+								},
+								{
+									"key": "dieuHoa",
+									"value": "false",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/phong-thue",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"phong-thue"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiZW1haWwiOiJudmNxdXllbkBnbWFpbC5jb20iLCJpYXQiOjE2NzY3MzM1NDYsImV4cCI6MTY3Njc0MDc0Nn0.bSJYXTToFJv4yVBrObLI_Uthuv0571C7URSGytjNbVU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"tenPhong\": \"phòng 2\",\r\n    \"dieuHoa\": false,\r\n    \"hoBoi\": true,\r\n    \"maViTri\": 2,\r\n    \"giaTien\": 250000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/phong-thue/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"phong-thue",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZW1haWwiOiJudmNxdXllbkBnbWFpbC5jb20iLCJpYXQiOjE2NzM1MDU2MjIsImV4cCI6MTY3MzUxMjgyMn0.gUOoLtMJG9hOJ_SfMyJ_y3ggTud6nxgYA0VUpB4R1x8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/phong-thue/9",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"phong-thue",
+								"9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Upload image",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZW1haWwiOiJudmNxdXllbkBnbWFpbC5jb20iLCJpYXQiOjE2NzM1MTQ2ODksImV4cCI6MTY3MzUyMTg4OX0.EuKS3skVGaNsqw7BT1WUIXFtcfCfZxUpUWtmx1bTeHI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "hinhAnh",
+									"type": "file",
+									"src": "/C:/Users/DELL/Downloads/6360461.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/phong-thue/upload-hinh-phong?maPhong=16",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"phong-thue",
+								"upload-hinh-phong"
+							],
+							"query": [
+								{
+									"key": "maPhong",
+									"value": "16"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Đặt Phòng",
+			"item": [
+				{
+					"name": "List",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZW1haWwiOiJudmNxdXllbkBnbWFpbC5jb20iLCJpYXQiOjE2NzQ5MTY3MDIsImV4cCI6MTY3NDkyMzkwMn0.vEnaoKI6ghbQT1saE3Pynwow22HQcx6cuKSViKSbLdA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/dat-phong",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"dat-phong"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsImVtYWlsIjoidXNlcnRlc3RAZ21haWwuY29tIiwiaWF0IjoxNjc2NzMzMzAwLCJleHAiOjE2NzY3NDA1MDB9.7autrCIDTV5qdKnXyEZiqtT7YzgMgo4_0cqEYTIyYCY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/dat-phong/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"dat-phong",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsImVtYWlsIjoidXNlcnRlc3RAZ21haWwuY29tIiwiaWF0IjoxNjc2NzMzMzAwLCJleHAiOjE2NzY3NDA1MDB9.7autrCIDTV5qdKnXyEZiqtT7YzgMgo4_0cqEYTIyYCY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ngayDen\": \"2022-02-19 01:20\",\r\n    \"ngayDi\": \"2022-02-22 02:20\",\r\n    \"maPhong\": 1,\r\n    \"soLuongKhach\": 4\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/dat-phong",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"dat-phong"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiZW1haWwiOiJudmNxdXllbkBnbWFpbC5jb20iLCJpYXQiOjE2NzY3MzM1NDYsImV4cCI6MTY3Njc0MDc0Nn0.bSJYXTToFJv4yVBrObLI_Uthuv0571C7URSGytjNbVU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ngayDen\": \"2022-02-19 01:20\",\r\n    \"ngayDi\": \"2022-02-22 02:20\",\r\n    \"maPhong\": 1,\r\n    \"soLuongKhach\": 4\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/dat-phong/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"dat-phong",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiZW1haWwiOiJudmNxdXllbkBnbWFpbC5jb20iLCJpYXQiOjE2NzY3MzM1NDYsImV4cCI6MTY3Njc0MDc0Nn0.bSJYXTToFJv4yVBrObLI_Uthuv0571C7URSGytjNbVU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ngayDen\": \"2022-02-19 01:20\",\r\n    \"ngayDi\": \"2022-02-22 02:20\",\r\n    \"maPhong\": 1,\r\n    \"soLuongKhach\": 4\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/dat-phong/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"dat-phong",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List By User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiZW1haWwiOiJudmNxdXllbkBnbWFpbC5jb20iLCJpYXQiOjE2NzY3MzM1NDYsImV4cCI6MTY3Njc0MDc0Nn0.bSJYXTToFJv4yVBrObLI_Uthuv0571C7URSGytjNbVU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/dat-phong/lay-theo-nguoi-dung/11",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"dat-phong",
+								"lay-theo-nguoi-dung",
+								"11"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Người Dùng",
+			"item": [
+				{
+					"name": "List",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiZW1haWwiOiJudmNxdXllbkBnbWFpbC5jb20iLCJpYXQiOjE2NzY3MjYzMTYsImV4cCI6MTY3NjczMzUxNn0.qBrihFVhwhpVtM84QOTbQH_T3oiQV7sQ49a2EmsJPEc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/users",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pagination",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiZW1haWwiOiJudmNxdXllbkBnbWFpbC5jb20iLCJpYXQiOjE2NzY3MjYzMTYsImV4cCI6MTY3NjczMzUxNn0.qBrihFVhwhpVtM84QOTbQH_T3oiQV7sQ49a2EmsJPEc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/users/phan-trang-tim-kiem?pageSize=1&page=2&keyword=quyền",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"phan-trang-tim-kiem"
+							],
+							"query": [
+								{
+									"key": "pageSize",
+									"value": "1"
+								},
+								{
+									"key": "page",
+									"value": "2"
+								},
+								{
+									"key": "keyword",
+									"value": "quyền"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiZW1haWwiOiJudmNxdXllbkBnbWFpbC5jb20iLCJpYXQiOjE2NzY3MjYzMTYsImV4cCI6MTY3NjczMzUxNn0.qBrihFVhwhpVtM84QOTbQH_T3oiQV7sQ49a2EmsJPEc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/users/12",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"12"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiZW1haWwiOiJudmNxdXllbkBnbWFpbC5jb20iLCJpYXQiOjE2NzY3MjYzMTYsImV4cCI6MTY3NjczMzUxNn0.qBrihFVhwhpVtM84QOTbQH_T3oiQV7sQ49a2EmsJPEc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/users/search/quyền",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"search",
+								"quyền"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiZW1haWwiOiJudmNxdXllbkBnbWFpbC5jb20iLCJpYXQiOjE2NzY3MjYzMTYsImV4cCI6MTY3NjczMzUxNn0.qBrihFVhwhpVtM84QOTbQH_T3oiQV7sQ49a2EmsJPEc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"User Test\",\r\n  \"email\": \"usertest@gmail.com\",\r\n  \"password\": \"123456aA@\",\r\n  \"phone\": \"0909090909\",\r\n  \"birthday\": \"2000-01-01\",\r\n  \"gender\": true,\r\n  \"role\": \"USER\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/users",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiZW1haWwiOiJudmNxdXllbkBnbWFpbC5jb20iLCJpYXQiOjE2NzY3MjYzMTYsImV4cCI6MTY3NjczMzUxNn0.qBrihFVhwhpVtM84QOTbQH_T3oiQV7sQ49a2EmsJPEc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"User Test Update\",\r\n    \"email\": \"quyennvctest@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/users/10",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiZW1haWwiOiJudmNxdXllbkBnbWFpbC5jb20iLCJpYXQiOjE2NzY3MjYzMTYsImV4cCI6MTY3NjczMzUxNn0.qBrihFVhwhpVtM84QOTbQH_T3oiQV7sQ49a2EmsJPEc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/users?id=10",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Upload Avatar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiZW1haWwiOiJudmNxdXllbkBnbWFpbC5jb20iLCJpYXQiOjE2NzY3MjYzMTYsImV4cCI6MTY3NjczMzUxNn0.qBrihFVhwhpVtM84QOTbQH_T3oiQV7sQ49a2EmsJPEc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/DELL/Downloads/f7b78b6a82ed5ab303fc.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/users/upload-avatar",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"upload-avatar"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Bình luận",
+			"item": [
+				{
+					"name": "List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/comments",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"comments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get List By Room",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiZW1haWwiOiJudmNxdXllbkBnbWFpbC5jb20iLCJpYXQiOjE2NzY3MjYzMTYsImV4cCI6MTY3NjczMzUxNn0.qBrihFVhwhpVtM84QOTbQH_T3oiQV7sQ49a2EmsJPEc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/comments/lay-binh-luan-theo-phong/2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"comments",
+								"lay-binh-luan-theo-phong",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiZW1haWwiOiJudmNxdXllbkBnbWFpbC5jb20iLCJpYXQiOjE2NzY3MjYzMTYsImV4cCI6MTY3NjczMzUxNn0.qBrihFVhwhpVtM84QOTbQH_T3oiQV7sQ49a2EmsJPEc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"maPhong\": 1,\r\n  \"noiDung\": \"Bình luận test\",\r\n  \"saoBinhLuan\": 4\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/comments",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"comments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiZW1haWwiOiJudmNxdXllbkBnbWFpbC5jb20iLCJpYXQiOjE2NzY3MjYzMTYsImV4cCI6MTY3NjczMzUxNn0.qBrihFVhwhpVtM84QOTbQH_T3oiQV7sQ49a2EmsJPEc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"maPhong\": 1,\r\n  \"noiDung\": \"Update bình luận\",\r\n  \"saoBinhLuan\": 3,\r\n  \"ngayBinhLuan\": \"18-02-2023\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/comments/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"comments",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/comments/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"comments",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
