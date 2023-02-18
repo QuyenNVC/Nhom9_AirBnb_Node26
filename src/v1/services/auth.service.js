@@ -73,7 +73,7 @@ module.exports = {
       } else {
         await User.destroy({
           where: {
-            userId: createdUser.userId,
+            id: createdUser.id,
           },
         });
         throw new AppError(400, "Register failed!");
