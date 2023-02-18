@@ -6,7 +6,11 @@ const isAdmin = require("../middlewares/isAdmin");
 const uploadCloud = require("../middlewares/uploader");
 
 routerUser.use(authenticated);
-routerUser.put("/", uploadCloud.single("file"), userController.uploadAvatar());
+routerUser.post(
+  "/upload-avatar",
+  uploadCloud.single("file"),
+  userController.uploadAvatar()
+);
 
 routerUser.use(isAdmin);
 routerUser.get("/", userController.getAllUser());
