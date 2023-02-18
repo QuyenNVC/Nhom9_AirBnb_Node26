@@ -16,7 +16,7 @@ const getAllUser = async () => {
 const getUserPagination = async ({ page, pageSize, name, ...query }) => {
   try {
     const queries = { raw: true };
-    const offset = !page || +page <= 1 ? 0 : +page - 1;
+    const offset = !page || +page <= 1 ? 0 : (page - 1) * pageSize;
     const limit = +pageSize || 8;
 
     queries.offset = offset;
