@@ -1,7 +1,7 @@
 const { verify, sign } = require("jsonwebtoken");
-const { AppError } = require("../middlewares/error");
-const { redisGet } = require("../services/redis");
-const { TOKEN_TYPE, TOKEN } = require("./constants");
+// const { AppError } = require("../middlewares/error");
+// const { redisGet } = require("../services/redis");
+// const { TOKEN_TYPE, TOKEN } = require("./constants");
 
 const generateToken = (payload) => {
   const token = sign(
