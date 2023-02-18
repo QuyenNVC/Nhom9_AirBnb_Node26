@@ -172,13 +172,12 @@ const updateDatPhong = async (data, userId, maDatPhong) => {
         throw new AppError(400, "User id is not existed");
       }
     }
-    const datPhong = await DatPhong.findOne({ where: { id: maDatPhong } });
 
     const datPhong2 = await DatPhong.findOne({
       where: {
-        // maPhong: {
-        //   [Op.ne]: data.maPhong,
-        // },
+        id: {
+          [Op.ne]: data.maDatPhong,
+        },
         maPhong: data.maPhong,
         [Op.or]: [
           {
