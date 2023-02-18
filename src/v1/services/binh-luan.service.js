@@ -1,5 +1,5 @@
 const BinhLuan = require("../databases/mysql/BinhLuan");
-const User = require("../databases/mysql/user");
+const User = require("../databases/mysql/User");
 const Phong = require("../databases/mysql/Phong");
 const { AppError } = require("../middlewares/error");
 // const moment = require("moment-timezone");
