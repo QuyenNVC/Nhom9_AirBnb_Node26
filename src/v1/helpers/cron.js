@@ -1,6 +1,6 @@
 const { CronJob } = require("cron");
-const { Op } = require("sequelize");
 const User = require("../databases/mysql/User");
+const { Op } = require("sequelize");
 
 module.exports = {
   cronDeleteUnverifyAccounts: new CronJob("0 * * * * *", function () {

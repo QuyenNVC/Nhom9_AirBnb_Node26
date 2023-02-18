@@ -1,7 +1,7 @@
 const sequelize = require("./connectDB");
 const DatPhong = require("./DatPhong");
-const Phong = require("./Phong");
 const User = require("./User");
+const Phong = require("./Phong");
 const ViTri = require("./ViTri");
 const BinhLuan = require("./BinhLuan");
 const LichSuCapNhatPhong = require("./LichSuCapNhatPhong");
@@ -23,17 +23,6 @@ Phong.belongsTo(ViTri, {
   as: "viTri",
   foreignKey: "maViTri",
 });
-
-// User.belongsToMany(Phong, {
-//   as: "phongDats",
-//   through: DatPhong,
-//   foreignKey: "maNguoiDat",
-// });
-// Phong.belongsToMany(User, {
-//   as: "phongDats",
-//   through: DatPhong,
-//   foreignKey: "maPhong",
-// });
 
 User.hasMany(DatPhong, {
   as: "datPhongs",
