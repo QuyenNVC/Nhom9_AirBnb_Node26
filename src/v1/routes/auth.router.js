@@ -11,20 +11,19 @@ const { AppError } = require("../middlewares/error");
 const passport = require("../middlewares/passport");
 
 const authRouter = express.Router();
+
+authRouter.post("/sign-up", signUp());
+authRouter.get("/verify", verifyAccount());
+authRouter.post("/sign-in", signIn());
+
 authRouter.use(
   cookieSession({
     name: "google-auth-session",
     keys: ["key1", "key2"],
   })
 );
-
 authRouter.use(passport.initialize());
 authRouter.use(passport.session());
-
-authRouter.post("/sign-up", signUp());
-authRouter.get("/verify", verifyAccount());
-authRouter.post("/sign-in", signIn());
-
 authRouter.get("/login-google", passport.authenticate("google"));
 authRouter.get(
   "/google-redirect",
