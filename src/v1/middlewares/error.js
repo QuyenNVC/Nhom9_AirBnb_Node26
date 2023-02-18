@@ -9,6 +9,7 @@ class AppError extends Error {
 
 const handleError = (err, req, res, next) => {
   if (!(err instanceof AppError)) {
+    console.error(err);
     logger.error(err.stack);
     err = new AppError(500, "Something went wrong!");
   }
