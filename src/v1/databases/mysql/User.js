@@ -1,4 +1,3 @@
-const { genSaltSync, hashSync } = require("bcrypt");
 const {
   STRING,
   BOOLEAN,
@@ -10,6 +9,7 @@ const {
 } = require("sequelize");
 const { ROLE } = require("../../helpers/constants");
 const sequelize = require("./connectDB");
+const { genSaltSync, hashSync } = require("bcrypt");
 
 module.exports = sequelize.define(
   "User",
