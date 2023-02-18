@@ -21,9 +21,9 @@ authRouter.use(
 authRouter.use(passport.initialize());
 authRouter.use(passport.session());
 
-authRouter.post("/signup", signUp());
+authRouter.post("/sign-up", signUp());
 authRouter.get("/verify", verifyAccount());
-authRouter.post("/signin", signIn());
+authRouter.post("/sign-in", signIn());
 
 authRouter.get("/login-google", passport.authenticate("google"));
 authRouter.get(
