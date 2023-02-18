@@ -105,8 +105,10 @@ const updateUser = async (id, data) => {
       throw new AppError(400, "User is not existed");
     }
     if (data.email) {
-      const isCheckEmail = await User.findOne({ where: { email: data.email } });
-      if (data.email === isCheckEmail) {
+      const isCheckEmail = await User.findOne({
+        where: { email: data.email, id: { [Op.ne]: id } },
+      });
+      if (isCheckEmail) {
         throw new AppError(400, "Email is existed");
       }
     }
