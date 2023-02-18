@@ -13,7 +13,7 @@ const getAllUser = async () => {
   }
 };
 
-const getUserPagination = async ({ page, pageSize, name, ...query }) => {
+const getUserPagination = async ({ page, pageSize, keyword, ...query }) => {
   try {
     const queries = { raw: true };
     const offset = !page || +page <= 1 ? 0 : (page - 1) * pageSize;
@@ -22,8 +22,8 @@ const getUserPagination = async ({ page, pageSize, name, ...query }) => {
     queries.offset = offset;
     queries.limit = limit;
 
-    if (name) {
-      query.name = { [Op.substring]: name };
+    if (keyword) {
+      query.name = { [Op.substring]: keyword };
     }
 
     const users = await User.findAndCountAll({
