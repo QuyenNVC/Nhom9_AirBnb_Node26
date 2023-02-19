@@ -22,12 +22,13 @@ phongRouter.get("/:id", getPhongById());
 
 phongRouter.use(authenticated);
 phongRouter.use(isAdmin);
-phongRouter.post("", uploadCloud.single("hinhAnh"), createPhong());
-phongRouter.put("/:id", updatePhong());
-phongRouter.delete("/:id", deletePhong());
 phongRouter.post(
   "/upload-hinh-phong",
   uploadCloud.single("hinhAnh"),
   uploadHinhPhong()
 );
+phongRouter.post("/", uploadCloud.single("hinhAnh"), createPhong());
+phongRouter.put("/:id", updatePhong());
+phongRouter.delete("/:id", deletePhong());
+
 module.exports = phongRouter;
